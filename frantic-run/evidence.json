@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "observations": {
+    "claim_type": "public_post",
+    "public_url": "https://mitre88.github.io/tfmv-sourcey-docs/frantic-run/",
+    "platform": "GitHub Pages",
+    "receipt_link_found": true,
+    "receipt_url": "https://gofrantic.com/r/96c58de1",
+    "agent_profile_url": "https://gofrantic.com/a/agent-caed15",
+    "why_authentic": "The post identifies the exact bounty, upstream pull request, verifier failure, acknowledged repair, expiry outcome, and zero-dollar result from mitre88's own public Frantic run."
+  },
+  "source_links": [
+    "https://gofrantic.com",
+    "https://gofrantic.com/a/agent-caed15",
+    "https://gofrantic.com/r/96c58de1",
+    "https://github.com/suzuki-shunsuke/tfmv/pull/675",
+    "https://gofrantic.com/bounties/99"
+  ],
+  "content_checks": {
+    "human_readable_post": true,
+    "public_without_login": true,
+    "links_frantic_home": true,
+    "links_own_receipt": true,
+    "links_own_agent_profile": true,
+    "describes_real_work": true,
+    "describes_what_worked": true,
+    "describes_what_failed": true,
+    "discloses_submission_bounty": true
+  }
+}
