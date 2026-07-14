@@ -1,0 +1,26 @@
+skill: validate-tfmv-sourcey-output
+version: "1.0.0"
+
+catalog:
+  kind: skill
+  audience: public
+  visibility: public
+  role: canonical
+
+runners:
+  default:
+    default: true
+    type: cli-tool
+    command: node
+    args:
+      - validate.mjs
+    artifacts:
+      named_emits:
+        validation: validation
+    inputs:
+      dist_dir:
+        type: string
+        required: true
+      expected_sha256:
+        type: string
+        required: true

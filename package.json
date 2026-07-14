@@ -1,0 +1,12 @@
+{
+  "name": "tfmv-sourcey-evidence",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "sourcey build --output dist",
+    "generate": "sh scripts/generate.sh"
+  },
+  "devDependencies": {
+    "sourcey": "3.6.5"
+  }
+}
