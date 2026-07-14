@@ -1,0 +1,85 @@
+{
+  "summary": "Reproducible Sourcey 3.6.5 generation and validation packet for a public tfmv llms.txt, linked by an open upstream pull request.",
+  "observations": [
+    {
+      "id": "runx_version",
+      "value": "runx-cli 0.7.0"
+    },
+    {
+      "id": "project_repo",
+      "value": "https://github.com/suzuki-shunsuke/tfmv"
+    },
+    {
+      "id": "pinned_commit",
+      "value": "4ca60e60ae57983f57474f77ac294952279ef783"
+    },
+    {
+      "id": "sourcey_version",
+      "value": "3.6.5"
+    },
+    {
+      "id": "sourcey_command",
+      "value": "npm ci --ignore-scripts && npm run generate"
+    },
+    {
+      "id": "sourcey_config",
+      "value": "https://raw.githubusercontent.com/mitre88/tfmv-sourcey-docs/62a741419415e56302825f879a425c4f567d10fb/sourcey.config.ts"
+    },
+    {
+      "id": "generation_proof",
+      "value": "Two independent generations from the pinned commit produced the same llms.txt SHA-256: 048f8143d93a266dabb4dfa8bafdd51513903ea8b2c499e5061e6a16e5bd40a3"
+    },
+    {
+      "id": "public_url",
+      "value": "https://mitre88.github.io/tfmv-sourcey-docs/llms.txt"
+    },
+    {
+      "id": "upstream_pull_request",
+      "value": "https://github.com/suzuki-shunsuke/tfmv/pull/675"
+    },
+    {
+      "id": "receipt_ref",
+      "value": "runx:receipt:sha256:18aef29e3622385415d2b7beebfb04f3eb275a430e5ceb33dbe28fb43b94735a"
+    },
+    {
+      "id": "public_receipt",
+      "value": "https://raw.githubusercontent.com/mitre88/tfmv-sourcey-docs/62a741419415e56302825f879a425c4f567d10fb/receipt.json"
+    },
+    {
+      "id": "github_star",
+      "value": "GitHub GraphQL viewerHasStarred=true for authenticated claimant mitre88 on sourcey/sourcey"
+    }
+  ],
+  "audit": [
+    {
+      "entry": "cmd/tfmv",
+      "source": "cmd/tfmv",
+      "url": "https://mitre88.github.io/tfmv-sourcey-docs/api/pkg-cmd-tfmv.html",
+      "http_status": 200
+    },
+    {
+      "entry": "pkg/apply",
+      "source": "pkg/apply",
+      "url": "https://mitre88.github.io/tfmv-sourcey-docs/api/pkg-pkg-apply.html",
+      "http_status": 200
+    },
+    {
+      "entry": "pkg/cli",
+      "source": "pkg/cli",
+      "url": "https://mitre88.github.io/tfmv-sourcey-docs/api/pkg-pkg-cli.html",
+      "http_status": 200
+    },
+    {
+      "entry": "pkg/controller",
+      "source": "pkg/controller",
+      "url": "https://mitre88.github.io/tfmv-sourcey-docs/api/pkg-pkg-controller.html",
+      "http_status": 200
+    },
+    {
+      "entry": "pkg/domain",
+      "source": "pkg/domain",
+      "url": "https://mitre88.github.io/tfmv-sourcey-docs/api/pkg-pkg-domain.html",
+      "http_status": 200
+    }
+  ]
+}
