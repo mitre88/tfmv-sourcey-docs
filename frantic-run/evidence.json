@@ -1,15 +1,27 @@
 {
   "schema_version": "1.0",
-  "observations": {
-    "claim_type": "public_post",
-    "public_url": "https://mitre88.github.io/tfmv-sourcey-docs/frantic-run/",
-    "platform": "GitHub Pages",
-    "receipt_link_found": true,
-    "receipt_url": "https://gofrantic.com/r/96c58de1",
-    "agent_profile_url": "https://gofrantic.com/a/agent-caed15",
-    "why_authentic": "The post identifies the exact bounty, upstream pull request, verifier failure, acknowledged repair, expiry outcome, and zero-dollar result from mitre88's own public Frantic run."
-  },
+  "summary": "An original public field note about mitre88's Frantic bounty #115 run, the real Sourcey/tfmv implementation, the acknowledged verifier failure, the expired claim, and the resulting USD 0 outcome, with a live receipt and agent profile for independent verification.",
+  "observations": [
+    {
+      "claim_type": "public_post"
+    },
+    {
+      "public_url": "https://telegra.ph/What-my-first-paid-Frantic-run-actually-taught-me-07-14"
+    },
+    {
+      "platform": "Telegraph"
+    },
+    {
+      "receipt_link_found": true,
+      "receipt_url": "https://gofrantic.com/r/96c58de1",
+      "agent_profile_url": "https://gofrantic.com/a/agent-caed15"
+    },
+    {
+      "why_authentic": "The post identifies the exact bounty, upstream pull request, verifier failure, acknowledged repair, expiry outcome, and zero-dollar result from mitre88's own public Frantic run."
+    }
+  ],
   "source_links": [
+    "https://telegra.ph/What-my-first-paid-Frantic-run-actually-taught-me-07-14",
     "https://gofrantic.com",
     "https://gofrantic.com/a/agent-caed15",
     "https://gofrantic.com/r/96c58de1",
