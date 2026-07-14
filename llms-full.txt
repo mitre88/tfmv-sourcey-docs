@@ -1,0 +1,69 @@
+# tfmv
+
+github.com/suzuki-shunsuke/tfmv/cmd/tfmv
+
+## Go API
+
+### cmd/tfmv
+
+Path: `/tfmv-sourcey-docs/api/pkg-cmd-tfmv.html`
+
+github.com/suzuki-shunsuke/tfmv/cmd/tfmv
+
+import "github.com/suzuki-shunsuke/tfmv/cmd/tfmv"
+
+### pkg/apply
+
+Path: `/tfmv-sourcey-docs/api/pkg-pkg-apply.html`
+
+github.com/suzuki-shunsuke/tfmv/pkg/apply
+
+import "github.com/suzuki-shunsuke/tfmv/pkg/apply" Index Functions func New(fs afero.Fs, stderr io.Writer) *Applier Types type Applier type Editor type MoveBlockOpt Functions func New(fs afero.Fs, stderr io.Writer) *Applier Source: pkg/apply/apply.go:19 Types type Applier Source: pkg/apply/apply.go:14 Copy type Applier struct { // contains filtered or unexported fields } func Apply(logger *slog.Logger, input *domain.Input, dirs map[string]*domain.Dir) error Source: pkg/apply/apply.go:26 type Editor Source: pkg/apply/hcledit.go:11 Copy type Editor struct { // contains filtered or unexported fields } func Move(logger *slog.Logger, opt *MoveBlockOpt) error Source: pkg/apply/hcledit.go:28 type MoveBlockOpt Source: pkg/apply/hcledit.go:16 Copy type MoveBlockOpt struct { // From is a source address. From string // To is a new address. To string FilePath string Stdin io . Reader Stdout io . Writer // If `Update` is true, the Terraform Configuration is updated in-place. Update bool } Fields From string From is a source address. To string To is a new address. FilePath string Stdin io.Reader Stdout io.Writer Update bool If Update is true, the Terraform Configuration is updated in-place.
+
+### pkg/cli
+
+Path: `/tfmv-sourcey-docs/api/pkg-pkg-cli.html`
+
+github.com/suzuki-shunsuke/tfmv/pkg/cli
+
+import "github.com/suzuki-shunsuke/tfmv/pkg/cli" Index Types type Flag type LDFlags type Runner Types type Flag Source: pkg/cli/runner.go:114 Copy type Flag struct { Jsonnet string Moved string LogLevel string LogColor string Replace string Regexp string Include string Exclude string Args [] string Help bool Version bool Recursive bool DryRun bool } Fields Jsonnet string Moved string LogLevel string LogColor string Replace string Regexp string Include string Exclude string Args []string Help bool Version bool Recursive bool DryRun bool type LDFlags Source: pkg/cli/runner.go:50 Copy type LDFlags struct { Version string Commit string Date string } Fields Version string Commit string Date string type Runner Source: pkg/cli/runner.go:41 Copy type Runner struct { Stdin io . Reader Stdout io . Writer Stderr io . Writer LDFlags * LDFlags Logger * slogutil . Logger LogLevelVar * slog . LevelVar } Fields Stdin io.Reader Stdout io.Writer Stderr io.Writer LDFlags *LDFlags Logger *slogutil.Logger LogLevelVar *slog.LevelVar func Runner) Run() error Source: pkg/cli/runner.go:56
+
+### pkg/controller
+
+Path: `/tfmv-sourcey-docs/api/pkg-pkg-controller.html`
+
+github.com/suzuki-shunsuke/tfmv/pkg/controller
+
+import "github.com/suzuki-shunsuke/tfmv/pkg/controller" Index Types type Change type Controller type Summary Types type Change Source: pkg/controller/controller.go:45 Change represents a change of a Terraform block. Copy type Change struct { // Dir is a Terraform module directory path. Dir string `json:"dir"` // Address is a current Terraform address. Address string `json:"address"` // NewAddress is a new Terraform address. NewAddress string `json:"new_address"` } Fields Dir string `json:"dir"` Dir is a Terraform module directory path. Address string `json:"address"` Address is a current Terraform address. NewAddress string `json:"new_address"` NewAddress is a new Terraform address. type Controller Source: pkg/controller/controller.go:10 Copy type Controller struct { // contains filtered or unexported fields } func Init(fs afero.Fs, stdout, stderr io.Writer) Source: pkg/controller/controller.go:17 Init initializes the Controller. func Run(logger *slog.Logger, input *domain.Input) error Source: pkg/controller/run.go:14 type Summary Source: pkg/controller/controller.go:25 Summary represents a summary of changes. It is used to output a summary of changes. Copy type Summary struct { // Changes is a list of changes. Changes [] * Change `json:"changes"` } Fields Changes []*Change `json:"changes"` Changes is a list of changes. func FromDirs(dirs map[string]*domain.Dir) Source: pkg/controller/controller.go:31 FromDirs updates the Summary from a list of directories.
+
+### pkg/domain
+
+Path: `/tfmv-sourcey-docs/api/pkg-pkg-domain.html`
+
+github.com/suzuki-shunsuke/tfmv/pkg/domain
+
+import "github.com/suzuki-shunsuke/tfmv/pkg/domain" Index Functions func Types() map[string]struct{} Types type Block type Dir type Input Functions func Types() map[string]struct{} Source: pkg/domain/block.go:56 Types returns a map of block types. Types type Block Source: pkg/domain/block.go:15 Block represents a Terraform resource, data, or module block. Copy type Block struct { // File is a file path File string `json:"file"` // BlockType is one of "resource", "data", or "module" BlockType string `json:"block_type"` // ResourceType is a resource type such as "aws_instance" ResourceType string `json:"resource_type"` // Name is a resource name. Name string `json:"name"` // NewName is a new resource name. NewName string `json:"-"` // MovedFile is a file path where moved blocks are written. MovedFile string `json:"-"` // Regexp is a regular expression to capture a resource reference. Regexp * regexp . Regexp `json:"-"` // TFAddress is a Terraform address such as "aws_instance.foo" TFAddress string `json:"-"` // HCLAddress is a HCL address such as "resource.aws_instance.foo" // hcledit uses this address rather than TFAddress. HCLAddress string `json:"-"` // NewTFAddress is a new Terraform address. NewTFAddress string `json:"-"` // NewHCLAddress is a new HCL address. NewHCLAddress string `json:"-"` } Fields File string `json:"file"` File is a file path BlockType string `json:"block_type"` BlockType is one of "resource", "data", or "module" ResourceType string `json:"resource_type"` ResourceType is a resource type such as "aws_instance" Name string `json:"name"` Name is a resource name. NewName string `json:"-"` NewName is a new resource name. MovedFile string `json:"-"` MovedFile is a file path where moved blocks are written. Regexp *regexp.Regexp `json:"-"` Regexp is a regular expression to capture a resource reference. TFAddress string `json:"-"` TFAddress is a Terraform address such as "aws_instance.foo" HCLAddress string `json:"-"` HCLAddress is a HCL address such as "resource.aws_instance.foo" hcledit uses this address rather than TFAddress. NewTFAddress string `json:"-"` NewTFAddress is a new Terraform address. NewHCLAddress string `json:"-"` NewHCLAddress is a new HCL address. func Fix(body string) string Source: pkg/domain/block.go:124 Fix replaces resource references with a new Terraform address. func Init() error Source: pkg/domain/block.go:112 Init initializes a block attributes. func IsData() bool Source: pkg/domain/block.go:51 func IsResource() bool Source: pkg/domain/block.go:47 IsResource returns true if the block type is "resource". func Regstr() string Source: pkg/domain/block.go:91 Regstr returns a regular expression to capture a resource reference. func SetNewName(newName string) Source: pkg/domain/block.go:105 SetNewName sets updates a new name, a new HCL address, and a new Terraform address. type Dir Source: pkg/domain/types.go:27 Dir represents a Terraform Module directory. Copy type Dir struct { // Path is a directory path. Path string // Files a list of file paths (not file names). Files [] string // Blocks is a list of renamed Terraform blocks. Blocks [] * Block } Fields Path string Path is a directory path. Files []string Files a list of file paths (not file names). Blocks []*Block Blocks is a list of renamed Terraform blocks. type Input Source: pkg/domain/types.go:5 Copy type Input struct { // Jsonnet is a jsonnet option. Jsonnet string // MovedFile is -moved option. MovedFile string // Replace is a replace option. Replace string // Regexp is a regexp option. Regexp string // Include is an include option. Include * regexp . Regexp // Exclude is an exclude option. Exclude * regexp . Regexp // Args is a list of arguments. Args [] string // Recursive is a recursive option. Recursive bool // DryRun is a dry-run option. DryRun bool } Fields Jsonnet string Jsonnet is a jsonnet option. MovedFile string MovedFile is -moved option. Replace string Replace is a replace option. Regexp string Regexp is a regexp option. Include *regexp.Regexp Include is an include option. Exclude *regexp.Regexp Exclude is an exclude option. Args []string Args is a list of arguments. Recursive bool Recursive is a recursive option. DryRun bool DryRun is a dry-run option.
+
+### pkg/plan
+
+Path: `/tfmv-sourcey-docs/api/pkg-pkg-plan.html`
+
+github.com/suzuki-shunsuke/tfmv/pkg/plan
+
+import "github.com/suzuki-shunsuke/tfmv/pkg/plan" Index Functions func NewPlanner(fs afero.Fs) *Planner Types type Planner Functions func NewPlanner(fs afero.Fs) *Planner Source: pkg/plan/plan.go:20 Types type Planner Source: pkg/plan/plan.go:16 Copy type Planner struct { // contains filtered or unexported fields } func Planner) Plan(logger *slog.Logger, input *domain.Input) (map[string]*domain.Dir, error) Source: pkg/plan/plan.go:26
+
+### pkg/rename
+
+Path: `/tfmv-sourcey-docs/api/pkg-pkg-rename.html`
+
+github.com/suzuki-shunsuke/tfmv/pkg/rename
+
+import "github.com/suzuki-shunsuke/tfmv/pkg/rename" Index Functions func New(logger *slog.Logger, fs afero.Fs, input *domain.Input) (Renamer, error) func NewJsonnetRenamer(logger *slog.Logger, fs afero.Fs, file string) (*JsonnetRenamer, error) func NewRegexpRenamer(s string) (*RegexpRenamer, error) func NewReplaceRenamer(s string) (*ReplaceRenamer, error) func NewVM(input string) *jsonnet.VM func SetNativeFunctions(vm *jsonnet.VM) Types type JsonnetRenamer type RegexpRenamer type Renamer type ReplaceRenamer Functions func New(logger *slog.Logger, fs afero.Fs, input *domain.Input) (Renamer, error) Source: pkg/rename/rename.go:17 New creates a Renamer. func NewJsonnetRenamer(logger *slog.Logger, fs afero.Fs, file string) (*JsonnetRenamer, error) Source: pkg/rename/rename_jsonnet.go:23 func NewRegexpRenamer(s string) (*RegexpRenamer, error) Source: pkg/rename/rename_regexp.go:18 NewRegexpRenamer creates a RegexpRenamer. func NewReplaceRenamer(s string) (*ReplaceRenamer, error) Source: pkg/rename/rename_replace.go:18 NewReplaceRenamer creates a ReplaceRenamer. s must be a string "/". func NewVM(input string) *jsonnet.VM Source: pkg/rename/rename_jsonnet.go:87 func SetNativeFunctions(vm *jsonnet.VM) Source: pkg/rename/rename_jsonnet.go:56 Types type JsonnetRenamer Source: pkg/rename/rename_jsonnet.go:19 Copy type JsonnetRenamer struct { // contains filtered or unexported fields } func Renamer) Rename(block *domain.Block) (string, error) Source: pkg/rename/rename_jsonnet.go:39 type RegexpRenamer Source: pkg/rename/rename_regexp.go:12 RegexpRenamer is a Renamer which renames addresses by replacing a regular expression regexp to new . Copy type RegexpRenamer struct { // contains filtered or unexported fields } func Renamer) Rename(block *domain.Block) (string, error) Source: pkg/rename/rename_regexp.go:31 Rename renames a block address. type Renamer Source: pkg/rename/rename.go:12 Renamer is an interface to rename a block address. Copy type Renamer interface { Rename ( block * domain . Block ) ( string , error ) } Methods Rename func(block *domain.Block) (string, error) type ReplaceRenamer Source: pkg/rename/rename_replace.go:11 ReplaceRenamer is a Renamer which renames addresses by replacing a fixed string old to new . Copy type ReplaceRenamer struct { // contains filtered or unexported fields } func Renamer) Rename(block *domain.Block) (string, error) Source: pkg/rename/rename_replace.go:27 Rename renames a block address.
+
+### Go API
+
+Path: `/tfmv-sourcey-docs/api.html`
+
+github.com/suzuki-shunsuke/tfmv
+
+github.com/suzuki-shunsuke/tfmv cmd/tfmv github.com/suzuki-shunsuke/tfmv/cmd/tfmv pkg/apply github.com/suzuki-shunsuke/tfmv/pkg/apply pkg/cli github.com/suzuki-shunsuke/tfmv/pkg/cli pkg/controller github.com/suzuki-shunsuke/tfmv/pkg/controller pkg/domain github.com/suzuki-shunsuke/tfmv/pkg/domain pkg/plan github.com/suzuki-shunsuke/tfmv/pkg/plan pkg/rename github.com/suzuki-shunsuke/tfmv/pkg/rename
